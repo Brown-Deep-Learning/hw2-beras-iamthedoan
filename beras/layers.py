@@ -22,7 +22,7 @@ class Dense(Diffable):
 
     def get_input_gradients(self) -> list[Tensor]:
         # Transpose gradient for dimension matching
-        return [self.w.T]
+        return [self.w]
 
     def get_weight_gradients(self) -> list[Tensor]:
         # May not be right 
