@@ -21,12 +21,10 @@ class Dense(Diffable):
         return x @ self.w + self.b
 
     def get_input_gradients(self) -> list[Tensor]:
-        # Transpose gradient for dimension matching
         return [self.w]
 
     def get_weight_gradients(self) -> list[Tensor]:
-        # May not be right 
-        return [self.inputs.T, 1]
+        return [self.inputs, 1]
 
     @staticmethod
     def _initialize_weight(initializer, input_size, output_size) -> tuple[Variable, Variable]:
