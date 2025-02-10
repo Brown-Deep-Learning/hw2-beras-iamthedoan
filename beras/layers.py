@@ -24,7 +24,7 @@ class Dense(Diffable):
         return [self.w]
 
     def get_weight_gradients(self) -> list[Tensor]:
-        return [1, self.inputs]
+        return [self.b, self.inputs]
 
     @staticmethod
     def _initialize_weight(initializer, input_size, output_size) -> tuple[Variable, Variable]:
@@ -53,5 +53,22 @@ class Dense(Diffable):
             "kaiming",
         ), f"Unknown dense weight initialization strategy '{initializer}' requested"
 
+        # set bias to zero
+        b = Variable(np.zeros((1, output_size)))
 
-        return None, None
+       
+        if initializer == "normal":
+            w = Variable(np.random.randn(input_size, output_size))
+        elif initializer == "xavier":
+            w = Variable(np.random.randn(input_size, output_size) * np.sqrt(2/(input_size + output_size)))
+        elif initializer == "kaiming":
+            w = Variable(np.random.randn(input_size, output_size) * np.sqrt(2/(input_size)))
+
+        else:
+            # zeros
+            w = Variable(np.zeros((input_size, output_size)))
+
+
+
+
+        return w, b
