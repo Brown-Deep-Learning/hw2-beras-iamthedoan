@@ -24,7 +24,7 @@ class Dense(Diffable):
         return [self.w]
 
     def get_weight_gradients(self) -> list[Tensor]:
-        return [np.expand_dims(self.inputs[0],axis=2), np.ones(self.b)] # each neuron in next layer has gradient self.inputs
+        return [np.expand_dims(self.inputs[0],axis=2), np.ones_like(self.b)] # each neuron in next layer has gradient self.inputs
 
 
 
