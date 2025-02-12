@@ -21,7 +21,7 @@ class LeakyReLU(Activation):
 
     def forward(self, x) -> Tensor:
         """Leaky ReLu forward propagation!"""
-        return NotImplementedError
+        return x if x > 0 else 0.1 * x
 
     def get_input_gradients(self) -> list[Tensor]:
         """
