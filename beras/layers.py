@@ -24,7 +24,7 @@ class Dense(Diffable):
         return [self.w]
 
     def get_weight_gradients(self) -> list[Tensor]:
-        return [0, self.inputs]
+        return self.inputs[0] # each neuron in next layer has gradient self.inputs
 
 
 
