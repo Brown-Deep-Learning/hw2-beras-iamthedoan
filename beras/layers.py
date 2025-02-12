@@ -24,7 +24,9 @@ class Dense(Diffable):
         return [self.w]
 
     def get_weight_gradients(self) -> list[Tensor]:
-        return [self.b, self.inputs]
+        return [self.inputs,self.inputs, self.inputs] # each w gradient is self.inputs, so as many self.inputs as output size?
+
+
 
     @staticmethod
     def _initialize_weight(initializer, input_size, output_size) -> tuple[Variable, Variable]:
